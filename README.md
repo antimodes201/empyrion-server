@@ -1,4 +1,4 @@
-# cryofall-server
+# Empyrion-Server
 Docker Image for Empyrion Dedicated Server
 
 Build to create a containerized version of Empyrion - Galactic Survival
