@@ -18,12 +18,16 @@ RUN export DEBIAN_FRONTEND noninteractive && \
 	gnupg2 \
 	software-properties-common \
 	xvfb && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
+    curl -s https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/Release.key | apt-key add - && \
+    apt-add-repository 'deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/ ./' && \
+    apt update && \
+    apt install libfaudio0 libasound2-plugins:i386 -y && \
+	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
     curl -s https://dl.winehq.org/wine-builds/winehq.key | apt-key add - && \
     apt-add-repository -y 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main' && \
-    apt-get install -y wine-staging=4.10~bionic \
-	wine-staging-i386=4.10~bionic \
-	wine-staging-amd64=4.10~bionic \
+    apt-get install -y wine-staging=5.13~bionic \
+	wine-staging-i386=5.13~bionic \
+	wine-staging-amd64=5.13~bionic \
 	winetricks && \
     rm -rf /var/lib/apt/lists/*
 
